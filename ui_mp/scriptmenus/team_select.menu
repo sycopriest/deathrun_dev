@@ -1,0 +1,649 @@
+#include "ui/menudef.h"
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+#include "ui_mp/dr_common.inc"
+
+{
+	menuDef
+	{
+		name			"team_select"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			STAT_UPDATE;
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			370 115 170 130
+			style			WINDOW_STYLE_SHADER
+			exp				material( "$levelBriefing" )
+			border			1
+			bordercolor		0 0 0 0
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"motd2"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+		
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		/*itemDef 
+		{
+			rect			354 90 1 175
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}*/
+		
+		// BOTTONS
+		/////////////////////////////////////////////////
+
+		#define SETUP_ACTION_AUTOASSIGN \				
+				scriptMenuResponse "autoassign";
+		#define SETUP_ACTION_SPECTATE \				
+				scriptMenuResponse "spectator";
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 45 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 245 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"@DRM_PLAY"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "autoassign";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 45 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(330 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			text			"Spectate"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+			
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "spectator";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"@DRM_CHARACTER"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open character_stuff;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Vip"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "vip_menu";
+				close self;
+			}
+		}
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"@DRM_OPTIONS"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_options
+				close self;
+			}
+		}
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"@MENU_LEAVE_GAME"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open popup_endgame;
+				close self;
+			}
+		}
+		
+
+	//	start stats
+		itemDef 
+		{
+			text			"Stats"
+			rect			205 132 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+
+	//kills
+		itemDef 
+		{
+			rect			180 155 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "KILLS", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Kills"
+			rect			100 155 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// deaths
+		itemDef 
+		{
+			rect			180 165 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "DEATHS", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Deaths"
+			rect			100 165 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// MELEEKILLS
+		itemDef 
+		{
+			rect			180 175 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "MELEE_KILLS", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Knife kills"
+			rect			100 175 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// Headshots
+		itemDef 
+		{
+			rect			180 185 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "HEADSHOTS", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Headshots"
+			rect			100 185 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// RANK
+		itemDef 
+		{
+			rect			320 155 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "RANK", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Rank"
+			rect			210 155 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// SCORE
+		itemDef 
+		{
+			rect			320 165 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "SCORE", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Score"
+			rect			210 165 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// KILLEDJUMPERS
+		itemDef 
+		{
+			rect			320 175 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "KILLED_JUMPERS", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Killed Jumpers"
+			rect			210 175 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// KILLEDACTIVATORS
+		itemDef 
+		{
+			rect			320 185 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "KILLED_ACTIVATORS", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Killed Activators"
+			rect			210 185 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	// WINS
+		/*itemDef 
+		{
+			rect			170 190 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "WINS", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Wins"
+			rect			170 180 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// LOSSES
+		itemDef 
+		{
+			rect			250 190 60 31
+			exp 			text(stat(tablelookup("mp/playerStatsTable.csv", 1, "LOSSES", 0)))
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Losses"
+			rect			250 180 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// SHOTS
+		itemDef 
+		{
+			rect			140 240 60 31
+			exp 			text( dvarint( "shots" ) )
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Shots"
+			rect			130 230 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// Hits
+		itemDef 
+		{
+			rect			215 240 60 31
+			exp 			text( dvarint( "hit" ) )
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Hits"
+			rect			210 230 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// Accuracy
+		itemDef 
+		{
+			rect			285 240 60 31
+			exp 			text( dvarstring( "accuracy" ) )
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{
+			text			"Accuracy"
+			rect			275 230 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}*/
+	}
+}
+
+
+	

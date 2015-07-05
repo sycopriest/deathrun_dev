@@ -1,0 +1,203 @@
+#include "ui/menudef.h"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/dr_common.inc"
+
+{
+	menuDef
+	{
+		name			"quit_menu"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set menu_bye @DRM_BYE_BYE"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			open team_select;
+			close self;
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		itemDef
+		{
+			name			"motd1"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"goodbye"
+			visible			1
+			rect			90 120 450 100
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("menu_bye") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// BOTTONS
+		/////////////////////////////////////////////////
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 45 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(245)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"@MENU_LEAVE_GAME"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self; 
+				exec "disconnect";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 45 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(325)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"@DRM_QUIT"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				uiScript quit;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			text			"@DRM_BACK"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open team_select;
+				close self;
+			}
+		}
+		
+	}
+}
+
+
+	

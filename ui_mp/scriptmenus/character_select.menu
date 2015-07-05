@@ -1,0 +1,370 @@
+#include "ui/menudef.h"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+#include "ui_mp/stats_info.inc"
+
+#include "ui_mp/common_macro.inc"
+
+
+{
+	menuDef
+	{
+		name			"character_select"
+		rect			0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN 0
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+
+		visible			1
+		legacySplitScreenScale
+		//soundloop 		"music_mainmenu_mp"
+		onOpen
+		{
+			scriptMenuResponse "character_open";
+		}
+		onClose
+		{
+			scriptMenuResponse "character_close";
+		}
+		onEsc
+		{
+			scriptMenuResponse "character_close";
+			close self;
+		}
+
+		itemDef
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			0 0 640 80
+			background		"black"
+			visible			1
+			forecolor		1 1 1 0.9
+			decoration
+		}
+
+		itemDef
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			0 400 640 80
+			background		"black"
+			visible			1
+			forecolor		1 1 1 0.9
+			decoration
+		}
+
+		itemDef
+		{
+			exp				text( "Character Customization" )
+			style			WINDOW_STYLE_EMPTY
+			rect			0 0 0 0.2
+
+			//forecolor		0 0 0 1
+			//exp forecolor	A	( 1 - (cos(milliseconds()/1000) * 0.2) )
+			forecolor		0.9 0.6 0 1
+			exp				rect X(10)
+			exp				rect Y(15) //+(cos(milliseconds()/400) * 32))
+			textaligny		10
+			textscale		0.34
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textfont		UI_FONT_OBJECTIVE
+			textalign		ITEM_ALIGN_LEFT
+			visible			1
+			decoration
+		}
+
+		//#include "ui_mp/navcontrols.inc"
+
+		//#include "ui_mp/game_info.inc"
+		//GAME_INFO( "$levelBriefing", dvarString( mapname ), "@BRAXI_VERSIONSTRING" /*gametypename()*/, 1 )
+		
+		//=========================================================
+		//===================== MENU SELECTION ====================
+		//=========================================================
+
+		#define DRBUTTON_X	280
+		#define DRBUTTON_Y	( 120 )
+
+
+		itemDef	
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			DRBUTTON_X DRBUTTON_Y 40 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+
+			forecolor		1 1 1 0.8
+			background		"popmenu_bg"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"<"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 40 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		6
+			textscale		0.4
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "next";
+			}
+		}
+
+
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	320
+
+
+
+		itemDef	
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			DRBUTTON_X DRBUTTON_Y 40 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+
+			forecolor		1 1 1 0.9
+			background		"popmenu_bg"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			">"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 40 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		6
+			textscale		0.4
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "previous";
+			}
+		}
+
+
+		#undef DRBUTTON_X
+		#undef DRBUTTON_Y
+		#define DRBUTTON_X	10
+		#define DRBUTTON_Y	( 50 )
+
+/*		itemDef	
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+
+			forecolor		1 1 1 0.8
+			background		"popmenu_bg"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Hats"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		6
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "hats";
+			}
+		}*/
+
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	65
+
+		itemDef	
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+
+			forecolor		1 1 1 0.8
+			background		"popmenu_bg"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"TORSO"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		6
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "torso";
+			}
+		}
+
+
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	90
+
+		itemDef	
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+
+			forecolor		1 1 1 0.8
+			background		"popmenu_bg"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"HEAD"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		6
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "head";
+			}
+		}
+
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	130
+
+		itemDef	
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+
+			forecolor		1 1 1 0.8
+			background		"popmenu_bg"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"^3DONE"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		6
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				open "team_select";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	130
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(100 )
+
+		itemDef	
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+
+			forecolor		1 1 1 0.8
+			background		"popmenu_bg"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^2Enabled"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( custom >= 1)
+			textfont		6
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "custom_on";
+			}
+		}
+		itemDef
+		{
+			text			"^1Disabled"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 80 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( custom <= 0)
+			textfont		6
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "custom_on";
+			}
+		}
+	}
+}
+
+
+	

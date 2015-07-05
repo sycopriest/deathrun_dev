@@ -1,0 +1,98 @@
+#include "ui/menudef.h"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/dr_common.inc"
+
+
+{
+	menuDef
+	{
+		name			"dr_rules"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		
+		onOpen
+		{
+			execnow "set dr_rules_text @DRM_RULES";
+		}
+		
+		onClose
+		{
+		}
+
+
+		onEsc
+		{
+			close self;
+			open "team_select";
+		}
+		// background big
+		itemDef
+		{
+			rect			150 140 320 310
+			style			WINDOW_STYLE_FILLED
+			border			1
+			bordercolor		1 0 0 1
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0.7
+			visible			1
+		}
+		// header
+		itemDef 
+		{
+			rect			160 151 300 30
+			style			WINDOW_STYLE_FILLED
+			border			1
+			bordercolor		1 0 0 1
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0.7
+			visible			1
+			visible			1
+		}
+		// header Text
+		itemDef
+		{
+			rect			160 160 300 20
+			forecolor		1 0 0 1
+			autowrapped
+			text			"@DRM_RULES_HEADER"
+			textfont		UI_FONT_NORMAL
+			textscale		.42
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			visible			1
+		}
+		// background
+		itemDef
+		{
+			rect			160 190 300 250
+			style			WINDOW_STYLE_FILLED
+			border			1
+			bordercolor		1 0 0 1
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0.7
+			visible			1
+		}
+		itemDef
+		{
+			name			"Rules"
+			visible			1
+			rect			170 200 300 200
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_rules_text") )
+			textfont		UI_FONT_NORMAL
+			textscale		.32
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+		}
+	}
+}
+
+
+	

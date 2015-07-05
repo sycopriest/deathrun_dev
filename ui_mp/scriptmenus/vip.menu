@@ -1,0 +1,3502 @@
+#include "ui/menudef.h"
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+#include "ui_mp/dr_common.inc"
+
+#define allperks (stat(2112))
+#define lifehack (stat(2113))
+#define promod (stat(2211))
+#define nightv (stat(2212))
+#define cartoon (stat(2213))
+#define chrome (stat(2214))
+#define rainbow (stat(2215))
+#define thermal (stat(2216))
+#define laser (stat(2217))
+#define bulletdamage (stat(2511))
+#define fastreload (stat(2512))
+#define longersprint (stat(2513))
+#define armorvest (stat(2514))
+#define bulletaccuracy (stat(2515))
+#define rof (stat(2516))
+#define holdbreath (stat(2517))
+#define none (stat(2518))
+#define pickup (stat(2611))
+#define forge (stat(2612))
+#define nukebullets (stat(2613))
+#define speed (stat(2614))
+
+{
+	menuDef
+	{
+		name			"vip"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set vip_info @DRM_INFO_VIP"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			235 115 170 130
+			style			WINDOW_STYLE_SHADER
+			exp				material( "$levelBriefing" )
+			border			1
+			bordercolor		0 0 0 0
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		//info
+		itemDef
+		{
+			name			"vipinfo"
+			visible			1
+			rect			95 380 460 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("vip_info") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open team_select;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 45 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 160 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Visions"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip_vision;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 45 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(415 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Fun"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip_fun;
+				close self;
+			}
+		}
+				
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Admin Only"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "vip_admin";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Perks"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open perks;
+				close self;
+			}
+		}
+	}
+}
+{	
+	menuDef
+	{
+		name			"vip_fun"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set vip_info @DRM_INFO_VIP"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		//info
+		itemDef
+		{
+			name			"vipinfo"
+			visible			1
+			rect			95 380 460 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("vip_info") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Clone"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "clone";
+			}
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Ninja"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "ninja";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Speed"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( speed >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "speed";
+			}
+		}
+		itemDef
+		{
+			text			"Speed"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( speed <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "speed";
+			}
+		}
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip;
+				close self;
+			}
+		}
+	}
+}	
+{	
+	
+	menuDef
+	{
+		name			"vip_vision"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set vip_info @DRM_INFO_VIP"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		//info
+		itemDef
+		{
+			name			"vipinfo"
+			visible			1
+			rect			95 380 460 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("vip_info") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Thermal"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( thermal >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "thermal";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Thermal"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( thermal <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "thermal";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Laser"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( laser >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "laser";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Laser"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( laser <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "laser";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Promod"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( promod >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "promod";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Promod"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( promod <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "promod";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Nightv"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( nightv >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "nightvision";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Nightv"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( nightv <= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "nightvision";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Cartoon"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( cartoon >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "cartoon";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Cartoon"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( cartoon <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "cartoon";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Rainbow"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( rainbow >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "rainbow";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Rainbow"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( rainbow <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "rainbow";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Chrome"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( chrome >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "chrome";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Chrome"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			 when( chrome <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "chrome";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Party"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "party";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Tracer"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "tracer";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip;
+				close self;
+			}
+		}
+	}
+}	
+{	
+	menuDef
+	{
+		name			"vip_weapons"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set vip_info @DRM_INFO_VIP"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		//info
+		itemDef
+		{
+			name			"vipinfo"
+			visible			1
+			rect			95 380 460 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("vip_info") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Beretta"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( beretta >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "beretta";
+				close self;
+			}
+		}
+
+		itemDef
+		{
+			text			"Beretta"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( beretta <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "beretta";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Colt 45"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			 when( colt45 >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "colt45";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Colt 45"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( colt45 <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "colt45";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Eagle"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( eagle >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "desert_eagle";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Eagle"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( eagle <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "desert_eagle";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5M40a3"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( m40a3 >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "m40a3";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"M40a3"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( m40a3 <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "m40a3";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Sniper R700"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( r700 >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "remington700";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Sniper R700"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( r700 <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "remington700";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5raygun"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( raygun >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "raygun";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"raygun"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( raygun <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "raygun";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5ballista"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( akimbos >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "ballista";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"ballista"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( ballista <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "ballista";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip;
+				close self;
+			}
+		}
+	}
+}	
+{	
+	menuDef
+	{
+		name			"vip_models"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set vip_info @DRM_INFO_VIP"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		//info
+		itemDef
+		{
+			name			"vipinfo"
+			visible			1
+			rect			95 380 460 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("vip_info") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Nico"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( nico >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "nico";
+			}
+		}
+		itemDef
+		{
+			text			"Nico"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( nico <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "nico";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -100 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Joker"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( joker >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "joker";
+			}
+		}
+		itemDef
+		{
+			text			"Joker"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( joker <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "joker";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Terminator"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( terminater >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "terminator";
+			}
+		}
+		itemDef
+		{
+			text			"Terminator"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( terminater <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "terminator";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -100 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Vin diesel"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( diesel >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "vin_diesel";
+			}
+		}
+		itemDef
+		{
+			text			"Vin diesel"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( diesel <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "vin_diesel";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Ghost Recon"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( recon >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "ghost_recon";
+			}
+		}
+		itemDef
+		{
+			text			"Ghost Recon"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 78 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( recon <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "ghost_recon";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -100 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Dog"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( dog >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "dog";
+			}
+		}
+		itemDef
+		{
+			text			"Dog"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( dog <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "dog";
+			}
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -33 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Sas"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( sas >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "sas";
+			}
+		}
+		itemDef
+		{
+			text			"Sas"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( sas <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "sas";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -69 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Shepherd"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( shepherd >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "shepherd";
+			}
+		}
+		itemDef
+		{
+			text			"Shepherd"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( shepherd <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "shepherd";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -69 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Masterchief"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( masterchief >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "masterchief";
+			}
+		}
+		itemDef
+		{
+			text			"Masterchief"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( masterchief <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "masterchief";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -33 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Makarov"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( makatov >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "makarov";
+			}
+		}
+		itemDef
+		{
+			text			"Makarov"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( makatov <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "makarov";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -33 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Alasad"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( alasad >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "alasad";
+			}
+		}
+		itemDef
+		{
+			text			"Alasad"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( alasad <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "alasad";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -0 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Alice"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( alice >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "alice";
+			}
+		}
+		itemDef
+		{
+			text			"Alice"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( alice <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "alice";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -69 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^550cent"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( cent >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "50cent";
+			}
+		}
+		itemDef
+		{
+			text			"50cent"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( cent <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "50cent";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip;
+				close self;
+			}
+		}
+	}
+}
+{
+	menuDef
+	{
+		name			"vipadmin"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set vip_info @DRM_INFO_VIP"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		//info
+		itemDef
+		{
+			name			"vipinfo"
+			visible			1
+			rect			95 380 460 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("vip_info") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Shockwave"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( shockwave >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "shockwave";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Shockwave"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( shockwave <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "shockwave";
+				close self;
+			}
+		}
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Nukebullets"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( nukebullets >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "nukebullets";
+			}
+		}
+		itemDef
+		{
+			text			"Nukebullets"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( nukebullets <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "nukebullets";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"^5Pickup"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( pickup >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "dopickup";
+			}
+		}
+		itemDef
+		{
+			text			"Pickup"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( pickup <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "dopickup";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Jetpack"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "jetpack";
+			}
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5All Perks"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( allperks >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "allperks";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"All Perks"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( allperks <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "allperks";
+				close self;
+			}
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Do Forge"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( forge >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "forge";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Do Forge"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( forge <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "forge";
+				close self;
+			}
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Life Hack"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( lifehack >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "lifehack";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Life Hack"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( lifehack <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "lifehack";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip;
+				close self;
+			}
+		}
+	}
+}
+
+//////////perks
+
+
+{
+	menuDef
+	{
+		name			"perks"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execnow "set vip_info @DRM_INFO_VIP"
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+		}
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 265 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		//info
+		itemDef
+		{
+			name			"vipinfo"
+			visible			1
+			rect			95 380 460 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("vip_info") )
+			textfont		UI_FONT_NORMAL
+			textscale		.3
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_LEFT
+			decoration
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Stopin Pwr"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( bulletdamage >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "stopingpower";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Stopin Pwr"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( bulletdamage <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "stopingpower";
+				close self;
+			}
+		}
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Fast Reload"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( fastreload >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "fastreload";
+			}
+		}
+		itemDef
+		{
+			text			"Fast Reload"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( fastreload <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "fastreload";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -130 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^1Sprint"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( longersprint >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "longersprint";
+			}
+		}
+		itemDef
+		{
+			text			"Sprint"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( longersprint <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "longersprint";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Juggernaut"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( armorvest >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "armorvest";
+			}
+		}
+
+		itemDef
+		{
+			text			"Juggernaut"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( armorvest <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "armorvest";
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Steady Aim"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( bulletaccuracy >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "bulletaccuracy";
+			}
+		}
+		itemDef
+		{
+			text			"Steady Aim"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( bulletaccuracy <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "bulletaccuracy";
+			}
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Double Tap"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( rof >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "rof";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Double Tap"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( rof <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "rof";
+				close self;
+			}
+		}
+		
+		// BOTTONS
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"^5Iron Lungs"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( holdbreath >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "holdbreath";
+				close self;
+			}
+		}
+		itemDef
+		{
+			text			"Iron Lungs"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( holdbreath <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				scriptMenuResponse "holdbreath";
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( -59 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"^5None"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( none <= 0)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "none";
+			}
+		}
+		itemDef
+		{
+			text			"None"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			when( none >= 1)
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				scriptMenuResponse "none";
+			}
+		}
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open vip;
+				close self;
+			}
+		}
+	}
+}

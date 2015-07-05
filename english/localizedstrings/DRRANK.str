@@ -1,0 +1,233 @@
+///////////////////////////////////////////////////////
+///|         |///|        |///|       |/\  \/////  ////
+///|  |////  |///|  |//|  |///|  |/|  |//\  \///  /////
+///|  |////  |///|  |//|  |///|  |/|  |///\  \/  //////
+///|          |//|  |//|  |///|       |////\    ///////
+///|  |////|  |//|         |//|  |/|  |/////    \//////
+///|  |////|  |//|  |///|  |//|  |/|  |////  /\  \/////
+///|          |//|__|///|__|//|__|/|__|///  ///\  \////
+/////////////////////////////////////////__/////\__\///
+///////////////////////////////////////////////////////
+//
+//	Xfire : maciusiak
+//
+//
+
+VERSION             "1"
+CONFIG              "C:\trees\cod3\cod3\bin\StringEd.cfg"
+FILENOTES           ""
+
+
+REFERENCE           0
+LANG_ENGLISH        "Newbie"
+
+REFERENCE           1
+LANG_ENGLISH        "Low"
+
+REFERENCE           2
+LANG_ENGLISH        "Noob"
+
+REFERENCE           3
+LANG_ENGLISH        "Little less Noob"
+
+REFERENCE           4
+LANG_ENGLISH        "Novice"
+
+REFERENCE           5
+LANG_ENGLISH        "Lucker"
+
+REFERENCE           6
+LANG_ENGLISH        "Lucky Lucker"
+
+REFERENCE           7
+LANG_ENGLISH        "Mod Fan"
+
+REFERENCE           8
+LANG_ENGLISH        "Getting Better"
+
+REFERENCE           9
+LANG_ENGLISH        "Regular"
+
+REFERENCE           10
+LANG_ENGLISH        "Average"
+
+REFERENCE           11
+LANG_ENGLISH        "Skilled"
+
+REFERENCE           12
+LANG_ENGLISH        "Little More Skilled"
+
+REFERENCE           13
+LANG_ENGLISH        "I'm Okey"
+
+REFERENCE           14
+LANG_ENGLISH        "Experienced"
+
+REFERENCE           15
+LANG_ENGLISH        "Little More Experienced"
+
+REFERENCE           16
+LANG_ENGLISH        "Hunter"
+
+REFERENCE           17
+LANG_ENGLISH        "Amazing"
+
+REFERENCE           18
+LANG_ENGLISH        "Pro"
+
+REFERENCE           19
+LANG_ENGLISH        "Ninja"
+
+REFERENCE           20
+LANG_ENGLISH        "Not highest level anymore"
+
+REFERENCE           21
+LANG_ENGLISH        "Make me highest level, pleaseeee"
+
+REFERENCE           22
+LANG_ENGLISH        "Are I'm The Best?"
+
+REFERENCE           23
+LANG_ENGLISH        "Need Soo Much EXP"
+
+REFERENCE           24
+LANG_ENGLISH        "Hate The Noobs"
+
+REFERENCE           25
+LANG_ENGLISH        "Me Gusta Death Run"
+
+REFERENCE           26
+LANG_ENGLISH        "Look At My Level"
+
+REFERENCE           27
+LANG_ENGLISH        "LoOoOoOoL"
+
+REFERENCE           28
+LANG_ENGLISH        "Fuck Yeah"
+
+REFERENCE           29
+LANG_ENGLISH        "^3Like A Sir^7"
+
+REFERENCE           30
+LANG_ENGLISH        "Am so Good"
+
+REFERENCE           31
+LANG_ENGLISH        "I love Ruth"
+
+REFERENCE           32
+LANG_ENGLISH        "Am the Bomb"
+
+REFERENCE           33
+LANG_ENGLISH        "Ruth Hamas is gay"
+
+REFERENCE           34
+LANG_ENGLISH        "I'm a barbie Girl"
+
+REFERENCE           35
+LANG_ENGLISH        "Fuck her right in the pussy"
+
+REFERENCE           36
+LANG_ENGLISH        "I love Ruth Deathrun"
+
+REFERENCE           37
+LANG_ENGLISH        "Call me Boss"
+
+REFERENCE           38
+LANG_ENGLISH        "You are my bitch"
+
+REFERENCE           39
+LANG_ENGLISH        "50 Shades of Gay"
+
+REFERENCE           40
+LANG_ENGLISH        "TERMINATOR"
+
+REFERENCE           41
+LANG_ENGLISH        "GODLIKE"
+
+REFERENCE           42
+LANG_ENGLISH        "IronMan"
+
+REFERENCE           43
+LANG_ENGLISH        "Who is next?"
+
+REFERENCE           44
+LANG_ENGLISH        "I own you"
+
+REFERENCE           45
+LANG_ENGLISH        "My name is Jeff"
+
+REFERENCE           46
+LANG_ENGLISH        "For ever alone"
+
+REFERENCE           47
+LANG_ENGLISH        "Ruth's best jumper"
+
+REFERENCE           48
+LANG_ENGLISH        "Cant touch this"
+
+REFERENCE           49
+LANG_ENGLISH        "Be water my friend"
+
+REFERENCE           50
+LANG_ENGLISH        "I'm the best, fuck the rest"
+
+REFERENCE           51
+LANG_ENGLISH        "You mad bro ?"
+
+REFERENCE           52
+LANG_ENGLISH        "King is here"
+
+REFERENCE           53
+LANG_ENGLISH        "Do you wanna build a snowman ;D"
+
+REFERENCE           54
+LANG_ENGLISH        "Run bitch Run"
+
+REFERENCE           55
+LANG_ENGLISH        "I believe i can fly"
+
+REFERENCE           56
+LANG_ENGLISH        "I'm faster than the FLASH"
+
+REFERENCE           57
+LANG_ENGLISH        "Race ?"
+
+REFERENCE           58
+LANG_ENGLISH        "Love me or Hate me"
+
+REFERENCE           59
+LANG_ENGLISH        "Improving"
+
+REFERENCE           60
+LANG_ENGLISH        "That's hot"
+
+REFERENCE           61
+LANG_ENGLISH        "I'm virgin"
+
+REFERENCE           62
+LANG_ENGLISH        "Believe in yourself"
+
+REFERENCE           63
+LANG_ENGLISH        "HULK"
+
+REFERENCE           64
+LANG_ENGLISH        "Be cool"
+
+REFERENCE           65
+LANG_ENGLISH        "try to catch me son"
+
+REFERENCE           66
+LANG_ENGLISH        "hah,gaaay"
+
+REFERENCE           67
+LANG_ENGLISH        "getting closer"
+
+REFERENCE           68
+LANG_ENGLISH        "One more step"
+
+REFERENCE           69
+LANG_ENGLISH        "Started from the bottom"
+
+ENDMARKER
+
+

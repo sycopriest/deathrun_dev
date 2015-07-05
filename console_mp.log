@@ -1,0 +1,90 @@
+Build 568 nightly Wed Jun 18 2008 04:48:38PM
+logfile opened on Sun Jul 05 20:30:12 2015
+
+sv_maxclients will be changed upon restarting.
+      dvar set sv_privateClients 0
+      dvar set sv_privatePassword 
+      dvar set sv_minPing 0
+      dvar set sv_maxPing 500
+      dvar set g_allowvote 0
+      dvar set sv_disableClientConsole 0
+      dvar set sv_cheats 0
+sv_cheats is read only.
+      dvar set sv_pure 1
+      dvar set sv_punkbuster 1
+sv_punkbuster is write protected.
+      dvar set sv_maxRate 25000
+      dvar set sv_master3 cod2update.activision.com
+      dvar set sv_allowDownload 1
+      dvar set sv_wwwDownload 1
+      dvar set sv_wwwBaseURL http://178.255.44.214/fastdl
+      dvar set sv_wwwDlDisconnected 0
+      dvar set g_gametype deathrun
+g_gametype will be changed upon restarting.
+      dvar set sv_mapRotation map mp_deathrun_supermario map mp_deathrun_watchit_v3 map mp_deathrun_long
+      dvar set sv_mapRotationCurrent gametype deathrun map mp_deathrun_supermario
+execing deathrun.cfg from disk
+      dvar set g_gametype deathrun
+g_gametype will be changed upon restarting.
+Unknown command "nick"
+Unknown command "permissions"
+Error: couldn't exec deathrun_songs.cfg
+      dvar set r_fullscreen 0
+      dvar set dedicated listen server
+      dvar set developer 0
+      dvar set sv_punkbuster 0
+sv_punkbuster is write protected.
+Error: Can't find map "mp_deathrun_epicfail".
+A mod is required for custom maps
+      dvar set ui_hud_hardcore 0
+Error: Could not load material "loadscreen_mp_dr_bananaphone".
+Error: Could not load material "loadscreen_mp_dr_bananaphone_v2".
+Error: Could not load material "loadscreen_mp_deathrun_darkness".
+Error: Could not load material "loadscreen_mp_deathrun_dungeon".
+Error: Could not load material "loadscreen_mp_deathrun_glass".
+Error: Could not load material "loadscreen_mp_deathrun_long".
+Error: Could not load material "loadscreen_mp_deathrun_grassy".
+Error: Could not load material "loadscreen_mp_deathrun_poison".
+Error: Could not load material "loadscreen_mp_deathrun_portal".
+Error: Could not load material "loadscreen_mp_deathrun_short_v4".
+Error: Could not load material "loadscreen_mp_deathrun_supermario".
+Error: Could not load material "loadscreen_mp_deathrun_takecare".
+Error: Could not load material "loadscreen_mp_deathrun_watchit".
+Error: Could not load material "loadscreen_mp_deathrun_watchit_v2".
+Error: Could not load material "loadscreen_mp_deathrun_watchit_v3".
+Error: Could not load material "loadscreen_mp_deathrun_portal_v3".
+Error: Could not load material "loadscreen_mp_deathrun_grassy_v4".
+Error: Could not load material "loadscreen_mp_deathrun_rainy_v2".
+      dvar set ui_mousePitch 0
+      dvar set ui_netGametypeName deathrun
+Working directory: C:\Users\Zaki\Desktop\cod4
+      dvar set cl_punkbuster 0
+      dvar set com_errorTitle Error
+      dvar set com_errorMessage Unable to initialize Punkbuster.  Punkbuster is disabled.
+      dvar set sv_punkbuster 0
+Error: Unable to initialize punkbuster.  Punkbuster is disabled
+      dvar set com_errorTitle Error
+      dvar set com_errorMessage Unable to initialize Punkbuster.  Punkbuster is disabled.
+Huffman Took 1 Milliseconds
+No stats found, zeroing out stats buffer
+      dvar set ui_playerProfileCount 1
+      dvar set ui_showEndOfGame 0
+      dvar set didyouknow @PLATFORM_DYK_MSG33
+      dvar set com_errorMessage 
+      dvar set com_errorMessage 
+      dvar set com_isNotice 0
+      dvar set ui_playerProfileCount 1
+      dvar set ui_showEndOfGame 0
+      dvar set didyouknow @PLATFORM_DYK_MSG1
+      dvar set ui_popup_close_icon 0
+quitting...
+----- CL_Shutdown -----
+      dvar set sv_disableClientConsole 0
+Successfully wrote stats data
+-----------------------
+Unloaded fastfile localized_common_mp
+Unloaded fastfile common_mp
+Unloaded fastfile ui_mp
+Unloaded fastfile mod
+Unloaded fastfile localized_code_post_gfx_mp
+Unloaded fastfile code_post_gfx_mp

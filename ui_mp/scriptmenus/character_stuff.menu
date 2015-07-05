@@ -1,0 +1,1905 @@
+#include "ui/menudef.h"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/dr_common.inc"
+
+#define PLAYER_INFO_X			5
+#define PLAYER_INFO_Y			100 //145
+
+
+
+//( "Unlocked at level ^3"+tableLookup(ITEM_TABLE, 0, id, 2)+"^7." )
+
+#define UPDATE_CHARACTER \
+	execNow "set ui_character_mtl "tableLookup(CHARACTER_TABLE, 0, stat(890)+1, 3) \
+	execNow "set ui_character_name "tableLookup(CHARACTER_TABLE, 0, stat(890)+1, 5)
+
+{
+	menuDef
+	{
+		name			"character_stuff"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+		}
+		onClose
+		{
+		}
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			370 115 170 130
+			style			WINDOW_STYLE_SHADER
+			exp				material( "$levelBriefing" )
+			border			1
+			bordercolor		0 0 0 0
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	// character
+		itemDef
+		{
+			visible			1
+			origin			136 140
+			forecolor		1 1 1 1
+			exp				text( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 6) )
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			100 150 64 64
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 3) )
+			border			3
+			bordercolor		.4 .4 .4 .8
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		// weapon
+		itemDef 
+		{
+			rect			180 150 84 68
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 3) )
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{ 
+			style		WINDOW_STYLE_SHADER 
+			origin		225 140
+			forecolor	1 1 1 1
+			exp			text( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 5) ) 
+			textfont	UI_FONT_NORMAL 
+			textalign	ITEM_ALIGN_CENTER 
+			textscale	0.3 
+			visible		1
+		}
+
+		// spray0
+		itemDef
+		{
+			visible			1
+			origin			310 140
+			forecolor		1 1 1 1
+			text			"Spray"
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{	
+			rect			280 150 64 64
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(SPRAY_TABLE, 0, dvarInt("drui_spray")+1, 3) )
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 45 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		itemDef
+		{
+			text			"Characters"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				open dr_characters;
+			}
+		}
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			text			"Sprays"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+			
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				open dr_sprays;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 200 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Weapons"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				open dr_Weapons;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(370 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Abilities"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				open dr_abilities;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Done"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				close self;
+				open team_select;
+			}
+		}
+	}
+	
+	menuDef
+	{
+		name			"dr_characters"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			//execNow "set menuName Characters"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// character
+		itemDef
+		{
+			visible			1
+			origin			455 145
+			forecolor		1 1 1 1
+			exp				text( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 6) )
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			415 155 80 80
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 3) )
+			border			3
+			bordercolor		.4 .4 .4 .8
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+
+		DR_CHARACTER( 102, 1 )
+		DR_CHARACTER( 126, 2 )
+		DR_CHARACTER( 150, 3 )
+		DR_CHARACTER( 174, 4 )
+		DR_CHARACTER( 198, 5 )
+		DR_CHARACTER( 222, 6 )
+		DR_CHARACTER( 246, 7 )
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y	( 95 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open character_stuff;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Next"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_characters1;
+			}
+		}
+	}
+	
+	menuDef
+	{
+		name			"dr_characters1"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// character
+		itemDef
+		{
+			visible			1
+			origin			455 145
+			forecolor		1 1 1 1
+			exp				text( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 6) )
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			415 155 80 80
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 3) )
+			border			3
+			bordercolor		.4 .4 .4 .8
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+		
+		DR_CHARACTER( 102, 8 )
+		DR_CHARACTER( 126, 9 )
+		DR_CHARACTER( 150, 10 )
+		DR_CHARACTER( 174, 11 )
+		DR_CHARACTER( 198, 12 )
+		DR_CHARACTER( 222, 13 )
+		DR_CHARACTER( 246, 14 )
+		
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(245 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Next"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_characters2;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 325 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_characters1;
+				close self;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	menuDef
+	{
+		name			"dr_characters2"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// character
+		itemDef
+		{
+			visible			1
+			origin			455 145
+			forecolor		1 1 1 1
+			exp				text( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 6) )
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			415 155 80 80
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(CHARACTER_TABLE, 0, dvarInt("drui_character")+1, 3) )
+			border			3
+			bordercolor		.4 .4 .4 .8
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+		
+		DR_CHARACTER( 102, 15 )
+		DR_CHARACTER( 126, 16 )
+		DR_CHARACTER( 150, 17 )
+		//DR_CHARACTER( 174, 18 )
+		//DR_CHARACTER( 198, 19 )
+		//DR_CHARACTER( 222, 20 )
+		//DR_CHARACTER( 246, 21 )
+		
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(285)
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_characters1;
+				close self;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	menuDef
+	{
+		name			"dr_sprays"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			//execNow "set menuName Sprays"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		DR_SPRAY( 0, 0, 1 )
+		DR_SPRAY( 1, 0, 2 )
+		DR_SPRAY( 2, 0, 3 )
+		DR_SPRAY( 3, 0, 4 )
+		DR_SPRAY( 4, 0, 5 )
+
+		DR_SPRAY( 0, 1, 6 )
+		DR_SPRAY( 1, 1, 7 )
+		DR_SPRAY( 2, 1, 8 )
+		DR_SPRAY( 3, 1, 9 )
+		DR_SPRAY( 4, 1, 10 )
+
+		DR_SPRAY( 0, 2, 11 )
+		DR_SPRAY( 1, 2, 12 )
+		DR_SPRAY( 2, 2, 13 )
+		DR_SPRAY( 3, 2, 14 )
+		DR_SPRAY( 4, 2, 15 )
+
+		DR_SPRAY( 0, 3, 16 )
+		DR_SPRAY( 1, 3, 17 )
+		DR_SPRAY( 2, 3, 18 )
+		DR_SPRAY( 3, 3, 19 )
+		DR_SPRAY( 4, 3, 20 )
+		
+		DR_SPRAY( 0, 4, 21 )
+		DR_SPRAY( 1, 4, 22 )
+		DR_SPRAY( 2, 4, 23 )
+		DR_SPRAY( 3, 4, 24 )
+		DR_SPRAY( 4, 4, 25 )
+	}
+
+	menuDef
+	{
+		name			"dr_weapons"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			//execNow "set menuName Weapons"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+			close self;
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		// weapon
+		itemDef 
+		{
+			rect			400 145 118 86
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 3) )
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{ 
+			style		WINDOW_STYLE_SHADER 
+			origin		450 155
+			forecolor	1 1 1 1
+			exp			text( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 5) ) 
+			textfont	UI_FONT_NORMAL 
+			textalign	ITEM_ALIGN_CENTER 
+			textscale	0.3 
+			visible		1
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+
+		DR_WEAPON( 102, 1 )
+		DR_WEAPON( 136, 2 )
+		DR_WEAPON( 170, 3 )
+		DR_WEAPON( 204, 4 )
+		DR_WEAPON( 238, 5 )
+		
+		//DR_WEAPON( 313, 11 )
+		//DR_WEAPON( 335, 12 )
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(245 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Next"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_weapons1;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 325 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open character_stuff;
+				close self;
+			}
+		}
+	}
+	
+	
+	
+	menuDef
+	{
+		name			"dr_weapons1"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			//execNow "set menuName Characters"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		// weapon
+		itemDef 
+		{
+			rect			400 145 118 86
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 3) )
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{ 
+			style		WINDOW_STYLE_SHADER 
+			origin		450 155
+			forecolor	1 1 1 1
+			exp			text( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 5) ) 
+			textfont	UI_FONT_NORMAL 
+			textalign	ITEM_ALIGN_CENTER 
+			textscale	0.3 
+			visible		1
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+		
+		
+		DR_WEAPON( 102, 6 )
+		DR_WEAPON( 136, 7 )
+		DR_WEAPON( 170, 8 )
+		DR_WEAPON( 204, 9 )
+		DR_WEAPON( 238, 10 )
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(245 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Next"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_weapons2;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 325 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_weapons1;
+				close self;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	menuDef
+	{
+		name			"dr_weapons2"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			//execNow "set menuName Characters"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		// weapon
+		itemDef 
+		{
+			rect			400 145 118 86
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 3) )
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		itemDef 
+		{ 
+			style		WINDOW_STYLE_SHADER 
+			origin		450 155
+			forecolor	1 1 1 1
+			exp			text( tableLookup(ITEM_TABLE, 0, dvarInt("drui_weapon")+1, 5) ) 
+			textfont	UI_FONT_NORMAL 
+			textalign	ITEM_ALIGN_CENTER 
+			textscale	0.3 
+			visible		1
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+
+		DR_WEAPON( 102, 11 )
+		//DR_WEAPON( 136, 12 )
+		//DR_WEAPON( 170, 13 )
+		//DR_WEAPON( 204, 14 )
+		//DR_WEAPON( 204, 15 )
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_weapons1;
+				close self;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	menuDef
+	{
+		name			"dr_abilities"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			//execNow "set menuName Abilities"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// ABILITY
+		itemDef
+		{
+			visible			1
+			origin			455 145
+			forecolor		1 1 1 1
+			exp				text( tableLookup(ABILITY_TABLE, 0, dvarInt("drui_ability")+1, 5) ) 
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			425 155 64 48
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(ABILITY_TABLE, 0, dvarInt("drui_ability")+1, 4) )
+			border			3
+			bordercolor		.4 .4 .4 .8
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+
+		DR_ABILITY( 110, 1 )
+		DR_ABILITY( 150, 2 )
+		DR_ABILITY( 190, 3 )
+		DR_ABILITY( 230, 4 )
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	(245 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Next"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_abilities1;
+				close self;
+			}
+		}
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 325 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open character_stuff;
+				close self;
+			}
+		}
+	}
+	
+	menuDef
+	{
+		name			"dr_abilities1"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			//execNow "set menuName Characters"
+		}
+
+		onClose
+		{
+		}
+
+		onEsc
+		{
+			close self;
+			open "character_stuff";
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		//#include "ui_mp/dr_characters_common.inc"
+		
+		// line
+		itemDef 
+		{
+			rect			81 275 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+		// line
+		itemDef 
+		{
+			rect			81 375 480 1
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		// line
+		itemDef 
+		{
+			rect			354 103 1 173
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		0 0.600 1 1
+			visible			1
+			decoration
+		}
+		
+	//	current
+		itemDef 
+		{
+			text			"Current"
+			rect			430 125 60 31
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+	// ABILITY
+		itemDef
+		{
+			visible			1
+			origin			455 145
+			forecolor		1 1 1 1
+			exp				text( tableLookup(ABILITY_TABLE, 0, dvarInt("drui_ability")+1, 5) ) 
+			textfont		UI_FONT_NORMAL
+			textalign		ITEM_ALIGN_CENTER
+			textscale		0.3
+			decoration
+		}
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			425 155 64 48
+			style			WINDOW_STYLE_SHADER
+			exp				material( tableLookup(ABILITY_TABLE, 0, dvarInt("drui_ability")+1, 4) )
+			border			3
+			bordercolor		.4 .4 .4 .8
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+		
+		itemDef
+		{
+			name			"motd3"
+			visible			1
+			rect			75 380 480 80
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("dr_motd") )
+			textfont		UI_FONT_NORMAL
+			textscale		.25
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+
+		DR_ABILITY( 110, 5 )
+		DR_ABILITY( 150, 6 )
+		DR_ABILITY( 190, 7 )
+		DR_ABILITY( 230, 8 )
+		
+		
+		#undef DRBUTTON_Y
+		#define DRBUTTON_Y ( 70 )
+		#undef DRBUTTON_X
+		#define DRBUTTON_X	( 285 )
+		
+		itemDef	
+		{
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			style			WINDOW_STYLE_SHADER
+			background		"botton"
+			visible			1
+			decoration
+		}
+
+		itemDef
+		{
+			text			"Back"
+			type			ITEM_TYPE_BUTTON
+			rect			DRBUTTON_X DRBUTTON_Y 75 20 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_CENTER
+			forecolor		1 1 1 0.85
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			visible			1 
+			textfont		1
+			textscale		0.3
+
+			onFocus 
+			{
+				play "mouse_over";
+			}
+			action 
+			{
+				play "mouse_click";
+				open dr_abilities;
+				close self;
+			}
+		}
+	}
+}
